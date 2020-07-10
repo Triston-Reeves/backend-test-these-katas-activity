@@ -1,49 +1,26 @@
-def add(x, y):
-    """Return the result of adding x to y."""
-    return x + y
+import unittest
+import katas
+from katas import add, factorial, multiply, power, fibonacci
 
 
-def multiply(x, y):
-    """Return the result of multiplying x by y."""
-    result = 0
+class TestKatas(unittest.TestCase):
+    def test_add(self):
+        """Return the result of adding x to y."""
+        self.assertEqual(add(4, 7), 11)
+    def test_multiply(self):
+        """Return the result of multiplying x by y."""
+        self.assertEqual(multiply(3, 6), 18)
+    def test_power(self):
+        """Return the result of taking x to the nth power."""
+        self.assertEqual(power(4, 4), 256)
+    def test_factorial(self):
+        """Return the result of calculating the factorial of n."""
+        self.assertEqual(
+            [factorial(n) for n in range(6)], [1, 1, 2, 6, 24, 120])
+    def test_fibonacci(self):
+        """Return the nth number in the fibonacci sequence (starting at 0)."""
+        # dont know 
+        pass
+if __name__ == '__main__':
+    unittest.main()
 
-    for _ in range(abs(y)):
-        result = add(result, x)
-
-    return -result if y < 0 else result
-
-
-def power(x, n):
-    """Return the result of taking x to the nth power."""
-    result = 1
-
-    for _ in range(n):
-        result = multiply(result, x)
-
-    return result
-
-
-def factorial(n):
-    """Return the result of calculating the factorial of n."""
-    result = 1
-
-    for i in range(1, n + 1):
-        result = multiply(result, i)
-
-    return result
-
-
-def fibonacci(n):
-    """Return the nth number in the fibonacci sequence (starting at 0)."""
-    if n < 3:
-        return n - 1
-    else:
-        second_to_last = 0
-        last = 1
-        result = 1
-
-        for _ in range(2, n):
-            result = second_to_last + last
-            second_to_last, last = last, result
-
-        return result
